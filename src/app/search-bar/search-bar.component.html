@@ -1,0 +1,23 @@
+
+<div class="search-container">
+  <form class="search-form" (ngSubmit)="onSubmit()">
+    <span class="logo" routerLink="/">TicketsandGear</span>
+    <input class="search-input"
+           id="keyword"
+           name="keyword"
+           [(ngModel)]="keyword"
+           placeholder="Search Sports, Concerts, and Theatre" />
+
+    <input class="search-input"
+           id="location"
+           name="location"
+           [(ngModel)]="location"
+           placeholder="Enter Location" />
+
+    <button class="search-button" type="submit">Search</button>
+   </form>
+</div>
+
+
+
+

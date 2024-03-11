@@ -1,0 +1,93 @@
+/* Styles for Filters */
+.filters {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto 20px;
+  padding: 0 20px;
+}
+
+/* Styles for Individual Event Cards */
+.events {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start; // Align items to the start
+  max-width: 1200px;
+  margin: 20px auto;
+}
+
+.event {
+  width: calc(50% - 20px); // Adjust width for 5 items per row
+  margin: 10px;
+  overflow: hidden;
+  border-radius: 5px;
+  background-color: #202020;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.3s;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column; // Stack elements vertically
+
+  &:hover {
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  &-thumbnail {
+    width: 100%;
+    height: 100%; // Image takes 60% of card height
+    object-fit: cover;
+    height: 172px;
+  }
+
+  &-description {
+    padding: 2px 4px; // Reduced padding
+    color: #fff;
+    height: 137px;
+    overflow: hidden; // Prevent text overflow
+    font-size: 0.8rem;
+  }
+}
+
+/* Style for Load More Button */
+.load-more-btn {
+  background-color: darkgrey;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin: 20px auto; // Center the button horizontally
+  transition: background-color 0.3s ease;
+  height: 40px;
+  line-height: 40px;
+  width: 50%;
+  display: block; // Ensure it's a block level element
+
+  &:hover {
+    background-color: #0056b3;
+  }
+}
+
+/* Ensure the button is outside and below the .events container */
+.load-more-container {
+  text-align: center; // Center the button container
+  width: 100%; // Full width to contain the button
+  margin-top: 20px; // Space above the button
+}
+
+/* Responsive adjustments for mobile view */
+@media screen and (max-width: 767px) {
+  .events .event {
+    width: calc(50% - 20px); // Adjust for 2 columns on mobile
+  }
+
+  .event-thumbnail {
+    height: auto; // Adjust height for mobile
+  }
+
+  .load-more-btn {
+    width: 80%; // Adjust width for mobile
+  }
+}

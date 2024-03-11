@@ -1,0 +1,112 @@
+
+<div class="filters">
+  <!-- Sort Filter -->
+  <mat-form-field>
+    <mat-label>Sort</mat-label>
+    <mat-select panelClass="sort-select"
+                [(ngModel)]="sort"
+                (selectionChange)="onSortChange()">
+      <mat-option value="name,asc">Name Ascending</mat-option>
+      <mat-option value="name,desc">Name Descending</mat-option>
+      <mat-option value="date,asc">Date Ascending</mat-option>
+      <mat-option value="date,desc">Date Descending</mat-option>
+      <mat-option value="relevance,asc">Relevance</mat-option>
+      <mat-option value="venueName,asc">Venue</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!-- Date Picker -->
+  <mat-form-field appearance="fill" class="date-picker">
+    <mat-label>Select a Date</mat-label>
+    <input matInput [matDatepicker]="picker" (dateChange)="onStartDateChange($event.value)">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+</div>
+<!-- Music Events Section -->
+<div *ngIf="musicEvents?.length" class="events">
+  <h1>Music Events</h1>
+  <div class="events-grid">
+    <ng-container *ngFor="let musicEvent of musicEvents; let i = index">
+      <div class="event" (click)="openEventDetails(musicEvent.id, musicEvent)">
+        <div class="event-thumb-container">
+          <ng-container *ngIf="musicEvent?.images?.[0]?.url; else noImageAvailable">
+            <img class="event-thumbnail"
+                 [src]="musicEvent.images[0].url"
+                 alt="Event Image {{ i + 1 }}">
+          </ng-container>
+          <ng-template #noImageAvailable>
+            <span class="no-image-text">No Image Available</span>
+          </ng-template>
+        </div>
+        <div class="event-description">
+          <h3 class="event-name">{{ musicEvent.name }}</h3>
+          <p class="event-date"><strong>Date:</strong> {{ musicEvent?.dates?.start?.localDate || 'N/A' }}</p>
+          <p class="event-time"><strong>Time:</strong> {{ musicEvent?.dates?.start?.localTime || 'N/A' }}</p>
+          <p class="event-venue"><strong>Venue:</strong> {{ musicEvent!._embedded!.venues![0]!.name }}
+          </p>
+          <button class="btn btn-primary" (click)="openEventDetails(musicEvent.id, musicEvent); $event.stopPropagation();">Event Details</button>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  <button *ngIf="moreMusicEventsAvailable" class="load-more-btn" (click)="loadMoreMusicEvents()">Load More Music Events</button>
+</div>
+
+<!-- Sports Events Section -->
+<div *ngIf="sportsEvents?.length" class="events">
+  <h1>Sports Events</h1>
+  <div class="events">
+    <ng-container *ngFor="let sportsEvent of sportsEvents; let i = index">
+      <div class="event" (click)="openEventDetails(sportsEvent.id, sportsEvent)">
+        <div class="event-thumb-container">
+          <ng-container *ngIf="sportsEvent?.images?.[0]?.url; else noImageAvailable">
+            <img class="event-thumbnail"
+                 [src]="sportsEvent.images[0].url"
+                 alt="Event Image {{ i + 1 }}">
+          </ng-container>
+          <ng-template #noImageAvailable>
+            <span class="no-image-text">No Image Available</span>
+          </ng-template>
+        </div>
+        <div class="event-description">
+          <h3 class="event-name">{{ sportsEvent.name }}</h3>
+          <p class="event-date"><strong>Date:</strong> {{ sportsEvent?.dates?.start?.localDate || 'N/A' }}</p>
+          <p class="event-time"><strong>Time:</strong> {{ sportsEvent?.dates?.start?.localTime || 'N/A' }}</p>
+          <p class="event-venue"><strong>Venue:</strong> {{ sportsEvent!._embedded!.venues![0]!.name }}</p>
+          <button class="btn btn-primary" (click)="openEventDetails(sportsEvent.id, sportsEvent); $event.stopPropagation();">Event Details</button>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  <button *ngIf="moreSportsEventsAvailable" class="load-more-btn" (click)="loadMoreSportsEvents()">Load More Sports Events</button>
+</div>
+
+<!-- Arts & Theatre Events Section -->
+<div *ngIf="artsEvents?.length" class="events">
+  <h1>Art & Theatre Events</h1>
+  <div class="events">
+    <ng-container *ngFor="let artsEvent of artsEvents; let i = index">
+      <div class="event" (click)="openEventDetails(artsEvent.id, artsEvent)">
+        <div class="event-thumb-container">
+          <ng-container *ngIf="artsEvent?.images?.[0]?.url; else noImageAvailable">
+            <img class="event-thumbnail"
+                 [src]="artsEvent.images[0].url"
+                 alt="Event Image {{ i + 1 }}">
+          </ng-container>
+          <ng-template #noImageAvailable>
+            <span class="no-image-text">No Image Available</span>
+          </ng-template>
+        </div>
+        <div class="event-description">
+          <h3 class="event-name">{{ artsEvent.name }}</h3>
+          <p class="event-date"><strong>Date:</strong> {{ artsEvent?.dates?.start?.localDate || 'N/A' }}</p>
+          <p class="event-time"><strong>Time:</strong> {{ artsEvent?.dates?.start?.localTime || 'N/A' }}</p>
+          <p class="event-venue"><strong>Venue:</strong> {{ artsEvent!._embedded!.venues![0]!.name }}</p>
+          <button class="btn btn-primary" (click)="openEventDetails(artsEvent.id, artsEvent); $event.stopPropagation();">Event Details</button>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  <button *ngIf="moreArtsEventsAvailable" class="load-more-btn" (click)="loadMoreArtsEvents()">Load More Art & Theatre Events</button>
+</div>

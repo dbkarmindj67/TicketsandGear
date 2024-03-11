@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "iiKCQVsYnsJ5IQnh94SI1ubqlfzuo7ilHl+EXfUo4Q7WdyjioL7IrfpuoJVza0P4uJsjnnpMWlbC4MU6Ig+3gw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Owner\\ExpressTicketmaster\\TicketsandGear\\TandG\\TandG.fsproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Owner\\.nuget\\packages\\fsharp.core\\8.0.100\\fsharp.core.8.0.100.nupkg.sha512",
+    "C:\\Users\\Owner\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.19.5\\microsoft.visualstudio.azure.containers.tools.targets.1.19.5.nupkg.sha512"
+  ],
+  "logs": []
+}

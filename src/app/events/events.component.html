@@ -1,0 +1,57 @@
+<div class="filters">
+  <mat-form-field>
+    <mat-label>Sort</mat-label>
+    <mat-select panelClass="sort-select"
+                [(ngModel)]="sort"
+                (selectionChange)="onSortChange()">
+      <mat-option value="name,asc">Name Ascending</mat-option>
+      <mat-option value="name,desc">Name Descending</mat-option>
+      <mat-option value="date,asc">Date Ascending</mat-option>
+      <mat-option value="date,desc">Date Descending</mat-option>
+      <mat-option value="venueName,asc">Venue Ascending</mat-option>
+      <mat-option value="venueName,desc">Venue Descending</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+<!-- Date Picker -->
+<mat-form-field appearance="fill" class="date-picker">
+  <mat-label>Select a Date</mat-label>
+  <input matInput [matDatepicker]="picker" (dateChange)="onDateChange($event.value)">
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+</div>
+
+<div *ngIf="events?.length" class="events">
+  <div class="events">
+    <!-- Iterating over events using ng-container and *ngFor -->
+    <ng-container *ngFor="let event of events; index as i">
+      <div class="event" (click)="openEventDetails(event.id, event)">
+        <!-- Event thumbnail -->
+        <div class="event-thumb-container">
+          <img [src]="event.images?.length ? event.images[0].url : 'assets/image.jpg'"
+               class="event-thumbnail"
+               alt="Event image {{i + 1}}"
+               (error)="handleImageError($event)" />
+        </div>
+
+        <!-- Event description -->
+        <div class="event-description">
+          <p class="event-name">{{ event.name }}</p>
+          <p class="event-platforms"><strong>Date:</strong> {{ event.dates.start.localDate || 'N/A' }}</p>
+          <p class="event-platforms"><strong>Time:</strong> {{ formatTime(event?.dates?.start?.localTime) }}</p>
+          <p class="event-platforms"><strong>Venue:</strong> {{ event._embedded?.venues?.length ? event._embedded.venues[0].name : 'N/A' }}</p>
+          <a [href]="event.url" class="btn btn-primary" target="_blank">Event Details</a>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+
+  <!-- Load More Button, if applicable -->
+  <button *ngIf="showLoadMoreButton()" class="load-more-btn" (click)="loadMoreEvents()">Load More Events</button>
+</div>
+
+<!-- Loading Indicator, if applicable -->
+<div *ngIf="loading">
+  Loading...
+</div>

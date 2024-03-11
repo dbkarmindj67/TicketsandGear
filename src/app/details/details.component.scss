@@ -1,0 +1,75 @@
+
+.event {
+  &-banner {
+    position: relative; // Makes the event-banner a relative positioning context
+    height: 442px; // or whatever height you desire
+    overflow: hidden;
+
+    &-img {
+      width: 100%;
+      object-fit: cover; // Ensures the image covers the full container without warping
+    }
+  }
+
+  &-content {
+    position: absolute; // Positions the content on top of the image
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0;
+    display: flex; // Turn on flexbox
+    flex-direction: column; // Stack children vertically
+    justify-content: center; // Center children vertically
+    align-items: center; // Center children horizontally
+    padding: 0px; // Optional padding
+    text-align: center;
+  }
+
+  &-header-title {
+    font-size: 60px;
+    color: #ffff; // White color, ensure it's readable on your image
+    font-weight: 700;
+    max-width: 100%;
+    line-height: 70px;
+    white-space: nowrap;
+    text-align: center;
+  }
+
+  &-header-status {
+    color: #ffff; // White color
+    font-weight: 700;
+  }
+}
+.details-wrapper {
+  max-width: 900px;
+  margin: 20px auto;
+  color: #ffff; // White color
+  position: relative;
+  height: 50%; // Occupy half the height
+
+  .lower-half-content {
+    position: absolute; // Absolute positioning within the parent container.
+    bottom: 0; // Position at the bottom.
+    width: 100%; // Take up the full width.
+    height: 50%; // Occupy the lower half.
+    overflow-y: auto; // Allow vertical scrolling if content exceeds height.
+  }
+}
+
+
+
+
+.event-pstatus {
+  font-size: 25px;
+  color: #ffff; // White color, ensure it's readable on your image
+  font-weight: 700;
+  line-height: 30px;
+}
+
+.event-promotestatus {
+  font-size: 15px;
+  color: #ffff; // White color, ensure it's readable on your image
+  font-weight: 300;
+  line-height: 30px;
+  }

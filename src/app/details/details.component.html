@@ -1,0 +1,52 @@
+<div class="details-wrapper">
+
+  <!-- Upper half -->
+  <div class="upper-half-content">
+    <div class="event-banner" *ngIf="eventDetail">
+      <img class="event-banner-img"
+           [src]="eventDetail?.images[0]?.url || '..\\app\\popular-events\\image.jpg'"
+           alt="Event background image" />
+
+      <div class="event-content">
+        <div class="event-header">
+          <!-- Display the event name -->
+          <h1 class="event-header-title">{{ eventDetail?.name }}</h1>
+          <h2 class="event-header-date">
+            {{ eventDetail?.dates?.start?.localDate | date }}
+          </h2>
+          <h2 class="event-header-status">
+            {{ eventDetail?.dates?.status.code  }}
+          </h2>
+          <a [href]="eventDetail?.url" color="white"  target="_blank">Tickets Available on Ticketmaster</a>
+          <!-- Display the event price range -->
+          <h2 *ngIf="eventDetail?.priceRanges?.length > 0" class="event-price-status">
+            Price: {{ eventDetail.priceRanges[0]?.min }} - {{ eventDetail.priceRanges[0]?.max }} {{ eventDetail.priceRanges[0]?.currency }}
+          </h2>
+        </div>
+
+        <div class="event-location">
+          <!-- Display the event location -->
+          <h3>{{ eventDetail?.venue?.name }}</h3>
+        </div>
+
+        <div class="event-promoter-status">
+          <!-- Display the promoter info -->
+          <p>Promoted by: {{ eventDetail?.promoter?.name }}</p>
+          
+      </div>
+    </div>
+  </div>
+
+  <!-- Lower half with the detail tabs -->
+  <div class="details-lower-half">
+    <app-detail-tabs *ngIf="eventDetail && attDetail && imgDetail && artistVideos && allAttractionDetailsWithVideos?.length > 0"
+                     [eventDetail]="eventDetail"
+                     [attDetail]="attDetail"
+                     [imgDetail]="imgDetail"
+                     [artistVideos]="artistVideos"
+                     [flickrImageUrls]="flickrImageUrls"
+                     [allAttractionDetailsWithVideos]="allAttractionDetailsWithVideos">
+    </app-detail-tabs>
+  </div>
+
+</div>

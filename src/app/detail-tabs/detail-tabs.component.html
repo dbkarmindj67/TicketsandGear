@@ -1,0 +1,85 @@
+<div class="details-wrapper">
+
+  <!-- Upper content of your component -->
+  <div class="upper-half-content">
+    <!-- Placeholder for the upper half's content. You should replace this with actual content for the upper half, such as event images, titles, etc. -->
+    <!-- Example: -->
+    <!-- <img src="path-to-your-image.jpg" alt="Event Image"> -->
+    <!-- <h1>Your Event Title</h1> -->
+  </div>
+
+  <!-- Your detailed tabs which you want in the lower half -->
+  <div class="detail-tabs">
+    <mat-tab-group mat-align-tabs="start" backgroundColor="primary">
+
+      <!-- About Tab -->
+      <mat-tab label="About">
+        <div class="event-tabs">
+          <h4>Description:</h4>
+          <p>{{ eventDetail?.description }}</p>
+
+          <h4>Price Range:</h4>
+          <div *ngFor="let price of eventDetail?.priceRanges">
+            <span>{{ price.min }} - {{ price.max }} {{ price.currency }}</span>
+          </div>
+        </div>
+      </mat-tab>
+
+      <!-- External Links Tab -->
+      <mat-tab label="External Links">
+        <div class="event-tabs">
+          <div *ngFor="let attractionDetail of allAttractionDetailsWithVideos">
+            <p *ngIf="attractionDetail.attraction?.externalLinks?.youtube?.[0]">
+              YouTube:
+              <a [href]="attractionDetail.attraction.externalLinks.youtube[0]" target="_blank">{{ attractionDetail.attraction.externalLinks.youtube[0] }}</a>
+            </p>
+            <!-- Additional external links can be added similarly -->
+          </div>
+        </div>
+      </mat-tab>
+
+
+  <!-- Attractions Images Tab -->
+      <mat-tab label="Attractions">
+        <div class="event-tabs">
+          <div class="event-grid">
+            <ng-container *ngFor="let attractionDetail of allAttractionDetailsWithVideos">
+              <!-- Display the first image from the event detail image array -->
+              <div *ngIf="attractionDetail.attraction.images && attractionDetail.attraction.images.length > 0">
+                <img [src]="attractionDetail.attraction.images[0].url" class="attraction-image" width="250" height="225">
+              </div>
+
+
+
+              <!-- Looping through and displaying the passed Flickr images for the attraction (filtering out non-image URLs) -->
+              <div *ngFor="let imageUrl of attractionDetail.flickrImages">
+                <ng-container *ngIf="isImage(imageUrl)">
+                  <img [src]="imageUrl" class="flickr-image" width="250" height="225">
+                </ng-container>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </mat-tab>
+
+
+
+
+
+
+      <!-- Videos from Attraction Tab -->
+      <mat-tab label="Trailers">
+        <div class="event-tabs">
+          <div class="event-grid">
+            <ng-container *ngFor="let attractionDetail of allAttractionDetailsWithVideos">
+              <div *ngFor="let video of attractionDetail.videos.items">
+                <iframe width="560" height="315" [src]="getYouTubeEmbedURL('https://www.youtube.com/watch?v=' + video.id.videoId)" frameborder="0" allowfullscreen></iframe>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>
+

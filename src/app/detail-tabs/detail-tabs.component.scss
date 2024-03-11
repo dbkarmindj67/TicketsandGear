@@ -1,0 +1,64 @@
+.event {
+
+  &-tabs {
+    color: #ffff;
+    text-align: left;
+    padding: 10px;
+    max-height: 400px; /* Adjust based on your needs */
+    overflow-y: auto;
+    background: #333; /* Dark gray background color */
+  }
+
+
+  &-par {
+    padding: 20px 20px 0 20px;
+    margin-bottom: 0;
+  }
+
+  &-description {
+    padding: 20px;
+  }
+
+
+  &-trailer {
+    width: 100%;
+    margin: 20px 0;
+  }
+
+
+  &-link {
+    color: #ffff;
+  }
+
+  &-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    > div {
+      flex: 0 0 48%; // Slightly less than 50% to account for potential margins or padding
+      margin-bottom: 16px;
+    }
+
+    img, iframe {
+      width: 100%; // Makes sure images and videos take the full width of their parent div
+    }
+  }
+
+  &-screenshot {
+    margin-top: 5px;
+    width: calc(50% - 10px);
+  }
+
+  &:nth-child(even) {
+    margin-left: 10px;
+  }
+}
+
+
+  .mat-tab-group {
+    .mat-tab-labels {
+      justify-content: center;
+    }
+  }
+
